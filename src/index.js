@@ -17,7 +17,14 @@ function init() {
       console.log(chalk.green(`Generating markdown file ...`))
       
       let rawData = fs.readFileSync(path[0]);
-      const json = JSON.parse(rawData)
+      let rawstr = rawData.toString()
+      let json = JSON.parse(rawData)
+      json.variable.map((v)=>{
+        let old = "{{"+v.key+"}}"
+        rawstr = rawstr.replace(new RegExp(old,"gm"),v.value)
+      })
+
+      json = JSON.parse(rawstr)
       let markdown = createStructureOfMarkdown(json)
       markdown += '_________________________________________________\n'
       markdown += 'Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)\n'

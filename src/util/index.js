@@ -68,10 +68,10 @@ function readQueryParams(url) {
   if (url?.query) {
     markdown += `### Query Params\n`;
     markdown += `\n`;
-    markdown += `|Param|value|\n`;
-    markdown += `|---|---|\n`;
+    markdown += `|Param|value|description\n`;
+    markdown += `|---|---|---|\n`;
     url.query.map((query) => {
-      markdown += `|${query.key}|${query.value}|\n`;
+      markdown += `|${query.key}|${query.value}|${query.description}|\n`;
     });
     markdown += `\n`;
     markdown += `\n`;
